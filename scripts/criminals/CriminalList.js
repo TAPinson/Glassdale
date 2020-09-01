@@ -20,3 +20,6 @@ const addCriminalsToDOM = (aCriminalArray) => {
 
     domElement.innerHTML = HTMLArray.join("")
 }
+
+
+// Test Zone //
