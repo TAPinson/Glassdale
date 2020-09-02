@@ -6,19 +6,32 @@ export const  OfficerList= () => {
     getOfficers()
     .then(() => {
         const officerArray = useOfficers();
-        //console.log("officerArray", officerArray)
-        addOfficersToDOM(officerArray)
+        render(officerArray)
     })
 }
 
 
-const addOfficersToDOM = (anOfficerArray) => {
-    const domElement = document.querySelector(".officersContainer")
+// const addOfficersToDOM = (anOfficerArray) => {
+//     const domElement = document.querySelector(".officersContainer")
 
-    let HTMLArray = anOfficerArray.map(singleOfficer => {
-        return OfficerHTML(singleOfficer);
-    })
-    //console.log("HTMLArray", HTMLArray)
+//     let HTMLArray = anOfficerArray.map(singleOfficer => {
+//         return OfficerHTML(singleOfficer);
+//     })
+//     domElement.innerHTML = HTMLArray.join("")
+// }
 
-    domElement.innerHTML = HTMLArray.join("")
+
+const render = officerColection => {
+    const contentTarget = document.querySelector(".filters__officer")
+    contentTarget.innerHTML = `
+        <select class="dropdown" id="officerSelect">
+            <option value="0">Please select an officer...</option>
+            <option value="0">Please select an officer...</option>
+            ${
+                officerColection.map(officer => {
+                    return `<option value="${officer.name}">${officer.name}</option>`
+                })
+            }
+        </select>
+    `
 }
