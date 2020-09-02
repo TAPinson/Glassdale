@@ -1,6 +1,8 @@
 import { OfficerHTML } from './Officer.js'
 import { useOfficers, getOfficers } from './OfficerProvider.js'
 
+const eventHub = document.querySelector(".container")
+
 
 export const  OfficerList= () => {
     getOfficers()
@@ -26,10 +28,6 @@ const render = officerColection => {
     `
 }
 
-
-// Test Zone // 
-
-const eventHub = document.querySelector(".container")
 
 // Listen for the custom event you dispatched in ConvictionSelect
 eventHub.addEventListener("change", changeEvent => {
