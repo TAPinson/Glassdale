@@ -1,6 +1,7 @@
 import { OfficerHTML } from './Officer.js'
 import { useOfficers, getOfficers } from './OfficerProvider.js'
 
+
 export const  OfficerList= () => {
     getOfficers()
     .then(() => {
@@ -9,7 +10,6 @@ export const  OfficerList= () => {
         addOfficersToDOM(officerArray)
     })
 }
-
 
 
 const addOfficersToDOM = (anOfficerArray) => {
