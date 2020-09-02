@@ -6,7 +6,3 @@ import {ConvictionSelect} from './convictions/ConvictionSelect.js'
 OfficerList()
 CriminalList()
 ConvictionSelect()
-
-// TEST FACILITY
-
-
