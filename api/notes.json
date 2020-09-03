@@ -1,0 +1,28 @@
+{
+  "notes": [
+    {
+      "noteText": "This is a note",
+      "date": "sept 2",
+      "suspect": "Tom Cat",
+      "id": 1
+    },
+    {
+      "noteText": "Something about a green Lincoln",
+      "date": "sept 1",
+      "suspect": "Tom Cat",
+      "id": 2
+    },
+    {
+      "noteText": "This is a note",
+      "suspect": "Jordane West",
+      "date": 1599150557211,
+      "id": 3
+    },
+    {
+      "noteText": "This is a note also!",
+      "suspect": "Ubaldo Wisoky",
+      "date": 1599150666320,
+      "id": 4
+    }
+  ]
+}

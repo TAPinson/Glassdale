@@ -1,0 +1,1 @@
+// Map over an array and display all notes from Note.js
