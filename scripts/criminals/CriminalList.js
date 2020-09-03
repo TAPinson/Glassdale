@@ -43,7 +43,7 @@ export const CriminalList = () => {
 
 
 // Listen for the custom event you dispatched in officerSelect
-eventHub.addEventListener("change", event => {
+eventHub.addEventListener("officerSelected", event => {
     // How can you access the officer name that was selected by the user?
     const officerName = event.target.value
     // How can you get the criminals that were arrested by that officer?
@@ -55,6 +55,5 @@ eventHub.addEventListener("change", event => {
             }
         }
     )
-    //console.log(matchingCriminals)
     render(matchingCriminals)
 })
