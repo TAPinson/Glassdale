@@ -3,7 +3,6 @@ import { useOfficers, getOfficers } from './OfficerProvider.js'
 
 const eventHub = document.querySelector(".container")
 
-
 export const  OfficerList= () => {
     getOfficers()
     .then(() => {

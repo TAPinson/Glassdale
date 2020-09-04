@@ -3,7 +3,6 @@ import { useCriminals, getCriminals } from './CriminalProvider.js'
 
 const eventHub = document.querySelector(".container")
 
-
 // Listen for the custom event you dispatched in ConvictionSelect
 eventHub.addEventListener('crimeChosen', event => {
     const appStateCriminals = useCriminals()
@@ -23,14 +22,6 @@ eventHub.addEventListener('crimeChosen', event => {
 })
 
 
-
-
-
-
-
-
-
-
 // Listen for the custom event you dispatched in officerSelect
 eventHub.addEventListener("change", event => {
     if (event.target.id === "officerSelect"){
@@ -47,6 +38,7 @@ eventHub.addEventListener("change", event => {
         render(matchingCriminals)
     }
 })
+
 
 // Display selected crimin array to the dom
 const render = (aCriminalArray) => {
