@@ -12,24 +12,28 @@ eventHub.addEventListener("noteStateChanged", () => {
 
 // Look for button for specific notes to be selected
 eventHub.addEventListener("click", () => {
-    const notes = useNotes()
-    const selectedCriminalID = event.target.id
-    const criminals = useCriminals()
-    //console.log(criminals)
+    //console.log(event.target.classList.value)
+    const isTargeted = event.target.classList.value
+    //console.log(isTargeted)
 
-    const selectedCriminalMatch = criminals.filter(criminal => {
-        return selectedCriminalID == criminal.id
-    })
+    if (isTargeted === "viewNoteButton") {
+        const notes = useNotes()
+        const selectedCriminalID = event.target.id
+        const criminals = useCriminals()
+        
+        const selectedCriminalMatch = criminals.filter(criminal => {
+            return selectedCriminalID == criminal.id
+        })
     
-    const selectedCriminal = selectedCriminalMatch[0]
-    console.log(selectedCriminal.name)
+        const selectedCriminal = selectedCriminalMatch[0]
+        //console.log(selectedCriminal.name)
     
-    const matchineNotes = notes.filter(note => {
-        return selectedCriminal.name === note.suspect
-    })
+        const matchineNotes = notes.filter(note => {
+            return selectedCriminal.name === note.suspect
+        })
 
-    console.log(matchineNotes)
-
+        console.log(matchineNotes)
+    }
 })
 
 
