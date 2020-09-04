@@ -12,22 +12,17 @@ eventHub.addEventListener("noteStateChanged", () => {
 
 // Look for button for specific notes to be selected
 eventHub.addEventListener("click", () => {
-
-
-
-
-    
     const notes = useNotes()
     const selectedCriminalID = event.target.id
     const criminals = useCriminals()
-
+    //console.log(criminals)
 
     const selectedCriminalMatch = criminals.filter(criminal => {
         return selectedCriminalID == criminal.id
     })
     
     const selectedCriminal = selectedCriminalMatch[0]
-  
+    console.log(selectedCriminal.name)
     
     const matchineNotes = notes.filter(note => {
         return selectedCriminal.name === note.suspect
