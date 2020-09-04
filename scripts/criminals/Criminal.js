@@ -1,10 +1,10 @@
-export const CriminalHTML = (criminalObj) => {
+export const CriminalHTML = (criminal) => {
     return `
-    <section id="criminals-${criminalObj.id}" class="card-criminal">
-        <h3>Name: ${criminalObj.name}</h3>
-        <div>Crime: ${criminalObj.conviction}</div>
-        <div>Term Start: ${new Date(criminalObj.incarceration.start).toLocaleDateString('en-US')}</div>
-        <div>Term End: ${new Date(criminalObj.incarceration.end).toLocaleDateString('en-US')}</div>
+    <section id="criminals-${criminal.id}" class="card-criminal">
+        <h3>Name: ${criminal.name}</h3>
+        <div>Crime: ${criminal.conviction}</div>
+        <div>Term Start: ${new Date(criminal.incarceration.start).toLocaleDateString('en-US')}</div>
+        <div>Term End: ${new Date(criminal.incarceration.end).toLocaleDateString('en-US')}</div>
     </section>
     `
 }

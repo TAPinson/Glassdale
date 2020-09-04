@@ -13,13 +13,18 @@ const dispatchStateChangeEvent = () => {
 }
 
 
-const getNotes = () => {
+export const useNotes = () => {
+	return notes.slice();
+}
+
+
+export const getNotes = () => {
     return fetch('http://localhost:8088/notes')
         .then(response => response.json())
         .then(parsedNotes => {
             notes = parsedNotes
+            console.log(notes)
         })
-
 }
 
 
