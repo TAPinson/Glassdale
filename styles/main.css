@@ -8,6 +8,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
+    max-width: 65%;
 }
 
 .card-criminal {
@@ -26,8 +27,8 @@
 }
 
 .noteViewer {
-    width: 50%;
-    margin-right: 10%;
+    width: 30%;
+    margin-top: 7.5%;
     float: right;
     padding: 1%;
 }

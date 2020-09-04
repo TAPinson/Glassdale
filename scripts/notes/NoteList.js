@@ -20,19 +20,14 @@ eventHub.addEventListener("click", () => {
         const notes = useNotes()
         const selectedCriminalID = event.target.id
         const criminals = useCriminals()
-        
         const selectedCriminalMatch = criminals.filter(criminal => {
             return selectedCriminalID == criminal.id
         })
-    
         const selectedCriminal = selectedCriminalMatch[0]
-        //console.log(selectedCriminal.name)
-    
         const matchineNotes = notes.filter(note => {
             return selectedCriminal.name === note.suspect
         })
-
-        console.log(matchineNotes)
+        render(matchineNotes)
     }
 })
 
