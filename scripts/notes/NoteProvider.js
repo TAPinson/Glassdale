@@ -23,7 +23,6 @@ export const getNotes = () => {
         .then(response => response.json())
         .then(parsedNotes => {
             notes = parsedNotes
-            console.log(notes)
         })
 }
 
