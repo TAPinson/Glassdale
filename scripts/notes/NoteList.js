@@ -10,6 +10,7 @@ eventHub.addEventListener("noteStateChanged", () => {
     render(newNotes)
 })
 
+
 // Look for button for specific notes to be selected
 eventHub.addEventListener("click", () => {
     //console.log(event.target.classList.value)
@@ -32,8 +33,6 @@ eventHub.addEventListener("click", () => {
 })
 
 
-
-
 // Render any provided notes to the dom
 const render = (notes) => {
     const contentTarget = document.querySelector(".noteViewer")
@@ -41,7 +40,10 @@ const render = (notes) => {
     contentTarget.innerHTML = notes.map((noteObject) => {
             return NoteHTMLConverter(noteObject)
         }).join("");
+
+    contentTarget.innerHTML += `<h2>Notes:</h2>`
 }
+
 
 // Prepare ALL notes to be sent for rendering
 export const NoteList = () => {
