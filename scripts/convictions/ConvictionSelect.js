@@ -4,7 +4,6 @@ import { getConvictions, useConvictions } from "./ConvictionProvider.js"
 const eventHub = document.querySelector(".container")
 const contentTarget = document.querySelector(".filters__crime")
 
-
 // On the event hub, listen for a "change" event.
 eventHub.addEventListener("change", event => {
     // This targets only the HTML element with the ID of "crimeSelect" and execute only when element changed
