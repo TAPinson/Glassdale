@@ -35,7 +35,7 @@ eventHub.addEventListener("click", () => {
 
 // Render any provided notes to the dom
 const render = (notes) => {
-    const contentTarget = document.querySelector(".noteViewer")
+    const contentTarget = document.querySelector(".viewer")
     const criminals = useCriminals()
     contentTarget.innerHTML = notes.map((noteObject) => {
             return NoteHTMLConverter(noteObject)
@@ -51,4 +51,3 @@ export const NoteList = () => {
         .then(useNotes)
         .then(render)
 }
-

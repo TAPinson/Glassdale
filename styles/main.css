@@ -26,7 +26,7 @@
     margin-left: 1em;
 }
 
-.noteViewer {
+.viewer {
     width: 30%;
     margin-top: 7.5%;
     float: right;
@@ -35,6 +35,15 @@
 }
 
 .note {
+    padding: 1%;
+    border: 1px solid;
+}
+
+#witnessContainer {
+    width: 100%;
+}
+
+.card-witness {
     padding: 1%;
     border: 1px solid;
 }
