@@ -23,6 +23,7 @@ export const CriminalHTML = (criminal) => {
         <div>Term Start: ${new Date(criminal.incarceration.start).toLocaleDateString('en-US')}</div>
         <div>Term End: ${new Date(criminal.incarceration.end).toLocaleDateString('en-US')}</div>
         <button class= "viewNoteButton" id="${criminal.id}">Get Notes</button>
+        <div id="notesBox-${criminal.id}"></div>
         <button class= "viewAlibiButton" id="associates--${criminal.id}">Get Alibis</button>
         ${AlibiDialog(criminal.id)}
         <p></p>

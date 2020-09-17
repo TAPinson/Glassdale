@@ -28,10 +28,14 @@
 
 .viewer {
     width: 30%;
-    margin-top: 7.5%;
+    margin-top: 6%;
     float: right;
     display: flex;
     flex-direction: column-reverse;
+}
+
+.witnessesTag {
+    text-align: center;
 }
 
 .note {

@@ -19,6 +19,6 @@ const addWitnessToDom = (witnessCollection) => {
     }).join("")
     //add to innerHTML
     domElement.innerHTML += HTMLArray
-    domElement.innerHTML += `<h2>Witnesses:</h2>`
+    domElement.innerHTML += `<h2 class="witnessesTag">Witnesses</h2>`
 
 }
