@@ -1,14 +1,20 @@
 import {NoteHTMLConverter} from './Note.js'
-import {useNotes, getNotes} from './NoteProvider.js'
+import {useNotes, getNotes, deleteNote} from './NoteProvider.js'
 import {getCriminals, useCriminals} from '../criminals/CriminalProvider.js'
 
 const eventHub = document.querySelector(".container")
 
 // Look for a new note to be submitted
-eventHub.addEventListener("noteStateChanged", () => {	
-    const newNotes = useNotes()
-    const suspects = useCriminals()
-    render(newNotes, suspects)
+eventHub.addEventListener("noteStateChanged", () => {
+    getNotes()
+    .then(() => {
+        getCriminals()
+    })
+    .then(() => {
+        const newNotes = useNotes()
+        const suspects = useCriminals()
+        renderAll(newNotes, suspects)
+    })	
 })
 
 
@@ -18,6 +24,11 @@ eventHub.addEventListener("click", event => {
     if (isTargeted === "viewNoteButton") {
         const notes = useNotes()
         const selectedCriminalID = parseInt(event.target.id)
+
+
+        // const clearCheck = document.querySelector(`#notesBox-${selectedCriminalID}`)
+        // clearCheck.innerHTML = ""
+
         const criminals = useCriminals()
         //Find the criminal who matches on ID
         const selectedCriminal = criminals.find(criminal => {
@@ -27,46 +38,70 @@ eventHub.addEventListener("click", event => {
         const matchingNotes = notes.filter(note => {
             return selectedCriminal.id === note.suspectID
         })
-        cardRender(matchingNotes, criminals)
+        renderOne(matchingNotes, criminals)
     }
 })
 
 
-const cardRender = (notes, suspects) => {
+eventHub.addEventListener("click", event => {
+    if (event.target.id.startsWith("deleteNote--")) {
+        const [prefix, id] = event.target.id.split("--")
+        deleteNote(id)
+    }
+})
+
+
+const renderOne = (notes, suspects) => {
     const contentTarget = document.querySelector(`#notesBox-${notes[0].suspectID}`)
-    if (contentTarget.innerHTML !== "") {
-        contentTarget.innerHTML = ""
+    const suspectName = suspects.find((suspect) => {
+        return suspect.id === parseInt(notes[0].suspectID)
+    })
+    
+    if (contentTarget.innerHTML === "") {
+        notes.map((note) => {
+            note.name = suspectName.name
+            contentTarget.innerHTML += NoteHTMLConverter(note)
+        })
     }else{
-        contentTarget.innerHTML = notes.map((noteObject) => {
-            noteObject.suspectObj = suspects.find(suspect => {
-                return suspect.id === parseInt(noteObject.suspectID)
-            })
-                return NoteHTMLConverter(noteObject)
-            }).join("");
+        contentTarget.innerHTML = ""
     }
 }
 
 
-// Render any provided notes to the dom in the viewer aside
-const render = (notes, suspects) => {
-    const contentTarget = document.querySelector(".viewer")
-    contentTarget.innerHTML = notes.map((noteObject) => {
-        noteObject.suspectObj = suspects.find(suspect => {
-            return suspect.id === parseInt(noteObject.suspectID)
+export const renderNew = (note) => {
+    getNotes()
+    .then(() => {
+        let notes = useNotes()
+        notes = notes.filter((correctNotes) => {
+            return correctNotes.suspectID === note.suspectID
         })
-            return NoteHTMLConverter(noteObject)
-        }).join("");
-    contentTarget.innerHTML += `<h2>Notes:</h2>`
+        const suspects = useCriminals()
+        const suspect = suspects.find((suspect) => {
+            return suspect.id === parseInt(note.suspectID)
+        })
+        note.name = suspect.name
+        const contentTarget = document.querySelector(`#notesBox-${suspect.id}`)
+        contentTarget.innerHTML = ""
+        notes.map((newNote) => {
+            contentTarget.innerHTML += NoteHTMLConverter(newNote)
+        })
+        contentTarget.innerHTML += NoteHTMLConverter(note)
+    })
 }
 
 
-// Prepare ALL notes to be sent for rendering
-export const NoteList = () => {
-    getNotes()
-    .then(getCriminals)
-    .then(() => {
-        const notes = useNotes()
-        const suspects = useCriminals()
-        render(notes, suspects)
+const renderAll = (notes, suspects) => {
+    const matchingNotes = notes.filter((note) => {
+        return suspects.filter((suspect) => {
+            if (suspect.id === parseInt(note.suspectID)) {
+                note.name = suspect.name
+                const contentTarget = document.querySelector(`#notesBox-${suspect.id}`)
+                contentTarget.innerHTML = ""
+            }            
+        })
+    })
+    matchingNotes.map((note) => {        
+        const contentTarget = document.querySelector(`#notesBox-${note.suspectID}`)
+        contentTarget.innerHTML += NoteHTMLConverter(note)
     })
 }
