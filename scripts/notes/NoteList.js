@@ -90,18 +90,28 @@ export const renderNew = (note) => {
 }
 
 
-const renderAll = (notes, suspects) => {
-    const matchingNotes = notes.filter((note) => {
-        return suspects.filter((suspect) => {
-            if (suspect.id === parseInt(note.suspectID)) {
-                note.name = suspect.name
-                const contentTarget = document.querySelector(`#notesBox-${suspect.id}`)
-                contentTarget.innerHTML = ""
-            }            
+export const renderAll = (suspectID) => {
+    const contentTarget = document.querySelector(`#notesBox-${suspectID}`)
+    
+    getNotes()
+    .then(() => {
+        const notes = useNotes()
+        const suspects = useCriminals()
+
+        const matchingNotes = notes.filter((note) => {
+            return note.suspectID === suspectID
         })
-    })
-    matchingNotes.map((note) => {        
-        const contentTarget = document.querySelector(`#notesBox-${note.suspectID}`)
-        contentTarget.innerHTML += NoteHTMLConverter(note)
+
+
+        const matchingSuspect = suspects.find((suspect) => {
+            return suspect.id === parseInt(suspectID)
+        })
+        
+        contentTarget.innerHTML = ""
+
+        matchingNotes.map((note) => {
+            note.name = matchingSuspect.name
+            contentTarget.innerHTML += NoteHTMLConverter(note)
+        })
     })
 }

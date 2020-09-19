@@ -40,15 +40,16 @@ export const saveNote = note => {
 }
 
 
-// Button click
-// Reference specific note by the id
-// Removed from the api
-// Get all notes
-// Display all notes
-
 export const deleteNote = noteId => {
+    const newNotes = useNotes()
+    
+    const findNote = newNotes.find((note) => {
+        return note.id === parseInt(noteId)
+
+    })
+
     return fetch(`http://localhost:8088/notes/${noteId}`, {
         method: "DELETE"
     })
-        .then(renderAll(noteId))
+        .then(renderAll(findNote.suspectID))
 }
