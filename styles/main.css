@@ -5,7 +5,6 @@ body {
 
 h1 {
     text-align: center;
-    
 }
 
 .headerHR {
@@ -23,14 +22,12 @@ h1 {
 .filters{
     display: flex;
     margin-left: 1em;
-
 }
 
 .criminalsContainer {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
-   
+    justify-content: flex-start;  
 }
 
 .card-criminal {
@@ -62,7 +59,6 @@ h1 {
 
 .viewer {
     width: 25%;
-    
     float: right;
     display: flex;
     flex-direction: column-reverse;
@@ -74,7 +70,6 @@ h1 {
 
 .note {
     padding: 2%;
-    
 }
 
 #witnessContainer {

@@ -35,19 +35,16 @@ export const saveNote = note => {
         },
         body: JSON.stringify(note)
     })
-    
     .then(renderNew(note))
 }
 
 
 export const deleteNote = noteId => {
     const newNotes = useNotes()
-    
     const findNote = newNotes.find((note) => {
         return note.id === parseInt(noteId)
 
     })
-
     return fetch(`http://localhost:8088/notes/${noteId}`, {
         method: "DELETE"
     })

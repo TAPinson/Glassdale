@@ -24,11 +24,6 @@ eventHub.addEventListener("click", event => {
     if (isTargeted === "viewNoteButton") {
         const notes = useNotes()
         const selectedCriminalID = parseInt(event.target.id)
-
-
-        // const clearCheck = document.querySelector(`#notesBox-${selectedCriminalID}`)
-        // clearCheck.innerHTML = ""
-
         const criminals = useCriminals()
         //Find the criminal who matches on ID
         const selectedCriminal = criminals.find(criminal => {
@@ -56,7 +51,6 @@ const renderOne = (notes, suspects) => {
     const suspectName = suspects.find((suspect) => {
         return suspect.id === parseInt(notes[0].suspectID)
     })
-    
     if (contentTarget.innerHTML === "") {
         notes.map((note) => {
             note.name = suspectName.name
@@ -92,23 +86,17 @@ export const renderNew = (note) => {
 
 export const renderAll = (suspectID) => {
     const contentTarget = document.querySelector(`#notesBox-${suspectID}`)
-    
     getNotes()
     .then(() => {
         const notes = useNotes()
         const suspects = useCriminals()
-
         const matchingNotes = notes.filter((note) => {
             return note.suspectID === suspectID
         })
-
-
         const matchingSuspect = suspects.find((suspect) => {
             return suspect.id === parseInt(suspectID)
         })
-        
         contentTarget.innerHTML = ""
-
         matchingNotes.map((note) => {
             note.name = matchingSuspect.name
             contentTarget.innerHTML += NoteHTMLConverter(note)
