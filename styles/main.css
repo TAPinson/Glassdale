@@ -3,6 +3,19 @@ body {
     color: #7d97ad;
 }
 
+h1 {
+    text-align: center;
+    
+}
+
+.headerHR {
+    height: 0.5em;
+    width: 85%;
+    background-color: #7d97ad;
+    border-radius: 12px;
+    margin-bottom: 1em;
+}
+
 .noteFormContainer {
     margin-bottom: 1em;
 }
