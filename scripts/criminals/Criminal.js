@@ -18,13 +18,15 @@ eventHub.addEventListener("click", event => {
 export const CriminalHTML = (criminal) => {
     return `
     <section id="criminals-${criminal.id}" class="card-criminal">
-        <h3>Name: ${criminal.name}</h3>
+        <h3>${criminal.name}</h3>
         <div>Crime: ${criminal.conviction}</div>
         <div>Term Start: ${new Date(criminal.incarceration.start).toLocaleDateString('en-US')}</div>
         <div>Term End: ${new Date(criminal.incarceration.end).toLocaleDateString('en-US')}</div>
-        <button class= "viewNoteButton" id="${criminal.id}">Get Notes</button>
+        <div>
+            <button class= "viewNoteButton" id="${criminal.id}">Get Notes</button>
+            <button class= "viewAlibiButton" id="associates--${criminal.id}">Get Alibis</button>
+        </div>
         <div class="notesBox" id="notesBox-${criminal.id}"></div>
-        <button class= "viewAlibiButton" id="associates--${criminal.id}">Get Alibis</button>
         ${AlibiDialog(criminal.id)}
         <p></p>
     </section>

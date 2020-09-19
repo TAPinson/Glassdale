@@ -16,8 +16,7 @@ const render = officerColection => {
     const contentTarget = document.querySelector(".filters__officer")
     contentTarget.innerHTML = `
         <select class="dropdown" id="officerSelect">
-            <option value="0">Please select an officer...</option>
-            <option value="0">Please select an officer...</option>
+            <option value="0">Filter by officer...</option>
             ${
                 officerColection.map(officer => {
                     return `<option value="${officer.name}">${officer.name}</option>`

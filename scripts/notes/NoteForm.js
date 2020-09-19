@@ -27,7 +27,7 @@ eventHub.addEventListener("click", clickEvent => {
 
 const render = (criminalArray) => {
     contentTarget.innerHTML = `
-        <h3>New Note Details</h3>
+        <h3>New Note</h3>
         <textarea id="noteForm--text" placeholder="Put a note here"></textarea>
         <select class="noteForm--dropdown" id="noteForm--criminal">
             <option value="0">Please select a criminal...</option>

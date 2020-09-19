@@ -24,8 +24,7 @@ eventHub.addEventListener("change", event => {
 const render = convictionsCollection => {
     contentTarget.innerHTML = `
         <select class="dropdown" id="crimeSelect">
-            <option value="0">Please select a crime...</option>
-            <option value="0">Please select a crime...</option>
+            <option value="0">Filter by crime...</option>
             ${
                 convictionsCollection.map(crime => {
                     return `<option value="${crime.name}">${crime.name}</option>`

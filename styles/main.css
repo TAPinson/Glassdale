@@ -1,21 +1,42 @@
+body {
+    background-color: #2d3c49;
+    color: #7d97ad;
+}
+
+.noteFormContainer {
+    margin-bottom: 1em;
+}
+
 .filters{
     display: flex;
     margin-left: 1em;
-    margin-bottom: 1%;
+
 }
 
 .criminalsContainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    max-width: 65%;
+   
 }
 
 .card-criminal {
     padding: 1em;
     margin: 1em;
     border: 1px solid;
-    width: 20%;
+    width: 25%;
+}
+
+.viewNoteButton, .viewAlibiButton {
+    margin-top: 0.5em;
+}
+
+.deleteButton {
+    margin-top: 0.5em;
+}
+
+.notesBox {
+    margin-top: 1em;
 }
 
 .noteFormContainer {
@@ -27,8 +48,8 @@
 }
 
 .viewer {
-    width: 30%;
-    margin-top: 6%;
+    width: 25%;
+    
     float: right;
     display: flex;
     flex-direction: column-reverse;
@@ -39,8 +60,8 @@
 }
 
 .note {
-    padding: 1%;
-    border: 1px solid;
+    padding: 2%;
+    
 }
 
 #witnessContainer {
