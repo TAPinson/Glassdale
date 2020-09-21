@@ -35,18 +35,20 @@ export const saveNote = note => {
         },
         body: JSON.stringify(note)
     })
-    .then(renderNew(note))
+    .then(() => {
+        renderNew(note)})
 }
 
 
 export const deleteNote = noteId => {
-    const newNotes = useNotes()
-    const findNote = newNotes.find((note) => {
+    const oldNotes = useNotes()
+    const findNote = oldNotes.find((note) => {
         return note.id === parseInt(noteId)
 
     })
     return fetch(`http://localhost:8088/notes/${noteId}`, {
         method: "DELETE"
     })
-        .then(renderAll(findNote.suspectID))
+        .then(() => {
+            renderAll(findNote.suspectID)})
 }

@@ -47,17 +47,19 @@ eventHub.addEventListener("click", event => {
 
 
 const renderOne = (notes, suspects) => {
-    const contentTarget = document.querySelector(`#notesBox-${notes[0].suspectID}`)
-    const suspectName = suspects.find((suspect) => {
-        return suspect.id === parseInt(notes[0].suspectID)
-    })
-    if (contentTarget.innerHTML === "") {
-        notes.map((note) => {
-            note.name = suspectName.name
-            contentTarget.innerHTML += NoteHTMLConverter(note)
+    if (notes[0]) {
+        const contentTarget = document.querySelector(`#notesBox-${notes[0].suspectID}`)
+        const suspectName = suspects.find((suspect) => {
+            return suspect.id === parseInt(notes[0].suspectID)
         })
-    }else{
-        contentTarget.innerHTML = ""
+        if (contentTarget.innerHTML === "") {
+            notes.map((note) => {
+                note.name = suspectName.name
+                contentTarget.innerHTML += NoteHTMLConverter(note)
+            })
+        }else{
+            contentTarget.innerHTML = ""
+        }
     }
 }
 
@@ -66,6 +68,7 @@ export const renderNew = (note) => {
     getNotes()
     .then(() => {
         let notes = useNotes()
+     
         notes = notes.filter((correctNotes) => {
             return correctNotes.suspectID === note.suspectID
         })
@@ -76,27 +79,30 @@ export const renderNew = (note) => {
         note.name = suspect.name
         const contentTarget = document.querySelector(`#notesBox-${suspect.id}`)
         contentTarget.innerHTML = ""
-        notes.map((newNote) => {
-            contentTarget.innerHTML += NoteHTMLConverter(newNote)
-        })
-        contentTarget.innerHTML += NoteHTMLConverter(note)
+
+        contentTarget.innerHTML = notes.map((newNote) => {
+
+           return NoteHTMLConverter(newNote)
+        }).join("")
+        
+        //contentTarget.innerHTML += NoteHTMLConverter(note)
     })
 }
 
 
 export const renderAll = (suspectID) => {
     const contentTarget = document.querySelector(`#notesBox-${suspectID}`)
+    contentTarget.innerHTML = ""
+    const suspects = useCriminals()
+    const matchingSuspect = suspects.find((suspect) => {
+        return suspect.id === parseInt(suspectID)
+    })
     getNotes()
     .then(() => {
         const notes = useNotes()
-        const suspects = useCriminals()
         const matchingNotes = notes.filter((note) => {
             return note.suspectID === suspectID
         })
-        const matchingSuspect = suspects.find((suspect) => {
-            return suspect.id === parseInt(suspectID)
-        })
-        contentTarget.innerHTML = ""
         matchingNotes.map((note) => {
             note.name = matchingSuspect.name
             contentTarget.innerHTML += NoteHTMLConverter(note)
